@@ -17,22 +17,22 @@ import java.util.Map;
 @PropertySource("classpath:application.properties")
 public class AppConfig {
 
-    @Value("${openwhathermap.city.name.london}")
+    @Value("${openweathermap.city.name.london}")
     String london;
 
-    @Value("${openwhathermap.city.name.newyork}")
+    @Value("${openweathermap.city.name.newyork}")
     String newyork;
 
-    @Value("${openwhathermap.city.name.washington}")
+    @Value("${openweathermap.city.name.washington}")
     String washington;
 
-    @Value("${openwhathermap.city.id.london}")
+    @Value("${openweathermap.city.id.london}")
     String londonId;
 
-    @Value("${openwhathermap.city.id.newyork}")
+    @Value("${openweathermap.city.id.newyork}")
     String newyorkId;
 
-    @Value("${openwhathermap.city.id.washington}")
+    @Value("${openweathermap.city.id.washington}")
     String washingtonId;
 
     @Bean
