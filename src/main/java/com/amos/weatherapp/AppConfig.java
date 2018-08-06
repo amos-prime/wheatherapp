@@ -3,11 +3,13 @@ package com.amos.weatherapp;
 import com.amos.weatherapp.domain.CityDetailsProvider;
 import com.amos.weatherapp.model.CityDetails;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +45,11 @@ public class AppConfig {
         data.put("washington", new CityDetails(washington, washingtonId));
 
         return new CityDetailsProvider(data);
+    }
+
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder.build();
     }
 
     @Bean
