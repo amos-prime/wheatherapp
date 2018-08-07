@@ -1,4 +1,4 @@
-package com.amos.weatherapp.model.json;
+package com.amos.weatherapp.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

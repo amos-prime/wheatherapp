@@ -1,4 +1,4 @@
-package com.amos.weatherapp.model.json;
+package com.amos.weatherapp.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;

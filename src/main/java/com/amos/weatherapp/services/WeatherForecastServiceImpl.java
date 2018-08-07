@@ -2,8 +2,7 @@ package com.amos.weatherapp.services;
 
 import com.amos.weatherapp.domain.CityDetailsProvider;
 import com.amos.weatherapp.model.CityDetails;
-import com.amos.weatherapp.model.WeatherDTO;
-import com.amos.weatherapp.model.json.WeatherForecast;
+import com.amos.weatherapp.model.WeatherForecast;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;

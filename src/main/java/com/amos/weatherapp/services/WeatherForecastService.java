@@ -1,7 +1,6 @@
 package com.amos.weatherapp.services;
 
-import com.amos.weatherapp.model.WeatherDTO;
-import com.amos.weatherapp.model.json.WeatherForecast;
+import com.amos.weatherapp.model.WeatherForecast;
 
 public interface WeatherForecastService {
 
