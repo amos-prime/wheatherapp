@@ -4,22 +4,109 @@
     <title>Weather Forecast</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <link rel="stylesheet" type="text/css"
-          href="webjars/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
 
     <link rel="stylesheet" th:href="@{/css/main.css}"
           href="../../css/main.css" />
 
+    <!-- Google Chart Scripts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script th:inline="javascript" type="text/javascript">
+        /*<![CDATA[*/
+
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var cityName = /*[[${cityName}]]*/ "";
+            var weatherEntries = /*[[${weatherEntries}]]*/ "";
+
+            temperatureData = new google.visualization.DataTable();
+            temperatureData.addColumn('string', 'Month');
+            temperatureData.addColumn('number', 'Temperature');
+
+            humidityData = new google.visualization.DataTable();
+            humidityData.addColumn('string', 'Month');
+            humidityData.addColumn('number', 'Humidity');
+
+            pressureData = new google.visualization.DataTable();
+            pressureData.addColumn('string', 'Month');
+            pressureData.addColumn('number', 'Pressure');
+
+            weatherEntries.forEach(function(entry) {
+                temperatureData.addRows([
+                    [entry.dt,  entry.temperature]
+                ]);
+
+                humidityData.addRows([
+                    [entry.dt,  entry.humidity]
+                ]);
+
+                pressureData.addRows([
+                    [entry.dt,  entry.pressure]
+                ]);
+
+            });
+
+            var temperatureChartOptions = {
+                title: 'Temperature',
+                curveType: 'function',
+                legend: { position: 'bottom'  },
+                explorer: { axis: 'horizontal, vertical',
+                            keepInBounds: true,
+                            maxZoomIn: .2
+                }
+            };
+
+            var humidityChartOptions = {
+                title: 'Humidity',
+                curveType: 'function',
+                legend: { position: 'bottom'  },
+                explorer: { axis: 'horizontal, vertical',
+                    keepInBounds: true,
+                    maxZoomIn: .2
+                }
+            };
+
+            var pressureChartOptions = {
+                title: 'Pressure',
+                curveType: 'function',
+                legend: { position: 'bottom'  },
+                explorer: { axis: 'horizontal, vertical',
+                    keepInBounds: true,
+                    maxZoomIn: .2
+                }
+            };
+
+            var temperatureChart = new google.visualization.LineChart(document.getElementById('temperature_chart'));
+            var humidityChart = new google.visualization.LineChart(document.getElementById('humidity_chart'));
+            var pressureChart = new google.visualization.LineChart(document.getElementById('pressure_chart'));
+            temperatureChart.draw(temperatureData, temperatureChartOptions);
+            humidityChart.draw(humidityData, humidityChartOptions);
+            pressureChart.draw(pressureData, pressureChartOptions);
+        }
+
+        /*]]>*/
+    </script>
+    <!-- End of Google Chart Scripts -->
 </head>
 <body>
 
 <div class="container">
+
     <div class="starter-template">
-        <h1></h1>
+        <h1></h1> 
         <h2>
-            <span th:text="Welcome"></span>
+            <span>Welcome to our five days weather forcast!</span>
         </h2>
     </div>
+
+        <div id="temperature_chart"></div>
+        <div id="humidity_chart"></div>
+        <div id="pressure_chart"></div>
+
 </div>
 <!-- /.container -->
 
