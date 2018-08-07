@@ -3,14 +3,6 @@
 <head>
     <title>Weather Forecast</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
-          <!--integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"-->
-          <!--crossorigin="anonymous">-->
-
-    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css" />
-
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -108,17 +100,18 @@
 </head>
 <body>
     <div class="container">
-                <div class="btn-group">
+
+                <div class="btn-group mt-3 ml-5">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Locations <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="/forecast/london">London</a></li>
-                        <li><a href="/forecast/new york">New York</a></li>
-                        <li><a href="/forecast/washington">Washington</a></li>
+                        <li><a class="dropdown-item" href="/forecast/london">London</a></li>
+                        <li><a class="dropdown-item" href="/forecast/new york">New York</a></li>
+                        <li><a class="dropdown-item" href="/forecast/washington">Washington</a></li>
                     </ul>
                 </div>
-        <div>
+        <div class="mt-2 ml-5">
             <p th:text="${chartTitle}">Weather Forecast</p>
         </div>
         <div>
