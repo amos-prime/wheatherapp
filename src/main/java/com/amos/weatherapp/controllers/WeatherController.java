@@ -1,14 +1,14 @@
 package com.amos.weatherapp.controllers;
 
+import com.amos.weatherapp.domain.NoSuchCityExcetion;
 import com.amos.weatherapp.model.ForecastEntry;
 import com.amos.weatherapp.model.WeatherForecast;
 import com.amos.weatherapp.services.WeatherForecastService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,5 +35,11 @@ public class WeatherController {
         model.addAttribute("cityName", forcast.getCityName());
         model.addAttribute("weatherEntries", forcast.getEntries());
         return "forecast";
+    }
+
+    @ExceptionHandler
+    private String cityNotFoundHandler(NoSuchCityExcetion ex, Model model) {
+        model.addAttribute("message", ex.getMessage());
+        return "error";
     }
 }

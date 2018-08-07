@@ -15,7 +15,7 @@ public class CityDetailsProvider {
     public CityDetails getDetailsFor(String cityName) {
         CityDetails cityDetails = this.cityDetails.get(cityName.toLowerCase());
         if(cityDetails == null) {
-            throw new NoSuchCityExcetion(String.format("City name not allowed: %s", cityName));
+            throw new NoSuchCityExcetion(String.format("City name: %s not found.", cityName));
         }
 
         return new CityDetails(cityDetails.getName(), cityDetails.getId());
