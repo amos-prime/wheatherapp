@@ -28,7 +28,7 @@ public class WeatherController {
     @GetMapping("/forecast/{city}")
     public String getWeatherForecast(Model model, @PathVariable String city) throws ForecastNotAvailableException {
         WeatherForecast forcast = weatherForecastService.getForecastFor(city);
-        model.addAttribute("chartTitle", String.format("Weather Forcast for %s", forcast.getCityName()));
+        model.addAttribute("chartTitle", String.format("Weather in %s for incoming five days.", forcast.getCityName()));
         model.addAttribute("weatherEntries", forcast.getEntries());
         return "forecast";
     }

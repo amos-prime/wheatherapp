@@ -29,7 +29,7 @@ public class ForecastEntry implements Serializable {
     public void setTimestamp(long unixTime) {
         Date date = new Date(unixTime * 1000);
         //TODO take it out to layer responsible for front end model
-        Format format = new SimpleDateFormat("dd MMMM HH:mm:ss");
+        Format format = new SimpleDateFormat("dd/MM/yyyy HH'h'mm");
         timestamp = format.format(date);
     }
 

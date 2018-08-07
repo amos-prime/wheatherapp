@@ -56,8 +56,8 @@
             });
 
             var temperatureChartOptions = {
-                title: 'Temperature',
                 curveType: 'function',
+                vAxis: {title: "[Fahrenheit]"},
                 legend: { position: 'bottom'  },
                 explorer: { axis: 'horizontal, vertical',
                             keepInBounds: true,
@@ -66,8 +66,8 @@
             };
 
             var humidityChartOptions = {
-                title: 'Humidity',
                 curveType: 'function',
+                vAxis: {title: "[%]"},
                 legend: { position: 'bottom'  },
                 explorer: { axis: 'horizontal, vertical',
                     keepInBounds: true,
@@ -76,8 +76,8 @@
             };
 
             var pressureChartOptions = {
-                title: 'Pressure',
                 curveType: 'function',
+                vAxis: {title: "[hPa]"},
                 legend: { position: 'bottom'  },
                 explorer: { axis: 'horizontal, vertical',
                     keepInBounds: true,
