@@ -23,16 +23,24 @@ public class WeatherForecastServiceImpl implements WeatherForecastService {
 
     private final CityDetailsProvider cityDetailsProvider;
 
+    private ApiAvailabilityService apiAvailabilityService;
+
     @Autowired
-    public WeatherForecastServiceImpl(RestTemplate restTemplate, CityDetailsProvider cityDetailsProvider) {
+    public WeatherForecastServiceImpl(RestTemplate restTemplate, CityDetailsProvider cityDetailsProvider,
+                                      ApiAvailabilityService apiAvailabilityService) {
         this.restTemplate = restTemplate;
         this.cityDetailsProvider = cityDetailsProvider;
+        this.apiAvailabilityService = apiAvailabilityService;
     }
 
     @Override
-    public WeatherForecast getForecastFor(String cityName) {
-        CityDetails cityDetails = cityDetailsProvider.getDetailsFor(cityName);
-        return restTemplate.getForEntity(openWeatherMapUrl, WeatherForecast.class, cityDetails.getId(), apikey)
-                .getBody();
+    public WeatherForecast getForecastFor(String cityName) throws ForecastNotAvailableException {
+        if(apiAvailabilityService.isApiAvailable()) {
+            CityDetails cityDetails = cityDetailsProvider.getDetailsFor(cityName);
+            apiAvailabilityService.registerApiCall();
+            return restTemplate.getForEntity(openWeatherMapUrl, WeatherForecast.class, cityDetails.getId(), apikey)
+                    .getBody();
+        }
+        throw new ForecastNotAvailableException();
     }
 }

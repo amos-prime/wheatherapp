@@ -24,6 +24,14 @@ public class ApiAvailabilityServiceImpl implements ApiAvailabilityService {
         }
     }
 
+    @Override
+    public void registerApiCall() {
+        if(isLastEntryOlderThanMinute()) {
+            resetHistory();
+        }
+        addCall();
+    }
+
     private boolean isLastEntryOlderThanMinute() {
         if(history.isEmpty()) {
             return true;
@@ -31,13 +39,6 @@ public class ApiAvailabilityServiceImpl implements ApiAvailabilityService {
         LocalDateTime last = history.get(history.size() - 1);
         LocalDateTime now = LocalDateTime.now();
         return last.plusMinutes(1).isBefore(now);
-    }
-
-    public void registerApiCall() {
-        if(isLastEntryOlderThanMinute()) {
-            resetHistory();
-        }
-        addCall();
     }
 
     private void addCall() {

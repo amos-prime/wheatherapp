@@ -4,4 +4,6 @@ public interface ApiAvailabilityService {
 
     public boolean isApiAvailable();
 
+    public void registerApiCall();
+
 }

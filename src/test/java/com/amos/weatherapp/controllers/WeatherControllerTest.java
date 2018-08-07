@@ -1,6 +1,7 @@
 package com.amos.weatherapp.controllers;
 
 import com.amos.weatherapp.domain.NoSuchCityExcetion;
+import com.amos.weatherapp.services.ForecastNotAvailableException;
 import com.amos.weatherapp.services.WeatherForecastService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +28,7 @@ public class WeatherControllerTest {
     WeatherForecastService weatherForecastService;
 
     @Test
-    public void weatherController_handleNoSuchCityException() throws Exception {
+    public void weatherController_handleNoSuchCityException() throws Exception, ForecastNotAvailableException {
         given(weatherForecastService.getForecastFor(anyString())).willThrow(NoSuchCityExcetion.class);
 
         mvc.perform(MockMvcRequestBuilders.get("/forecast/lalala"))

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -24,6 +25,9 @@ public class WeatherForecastServiceImplTest {
     @MockBean
     private CityDetailsProvider cityDetailsProvider;
 
+    @MockBean
+    private ApiAvailabilityService apiAvailabilityService;
+
     @Autowired
     private WeatherForecastService weatherForecastService;
 
@@ -37,9 +41,10 @@ public class WeatherForecastServiceImplTest {
     private String openWeatherMapUrl;
 
     @Test
-    public void WeatheForecastService_shouldReturnForecastForGivenCity() {
+    public void WeatheForecastService_shouldReturnForecastForGivenCity() throws ForecastNotAvailableException {
         //arrange
         given(cityDetailsProvider.getDetailsFor(anyString())).willReturn(new CityDetails(london, londonId));
+        given(apiAvailabilityService.isApiAvailable()).willReturn(true);
 
         //act
         WeatherForecast forecast = weatherForecastService.getForecastFor(london);
