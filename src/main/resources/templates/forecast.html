@@ -29,15 +29,15 @@
             var weatherEntries = /*[[${weatherEntries}]]*/ "";
 
             temperatureData = new google.visualization.DataTable();
-            temperatureData.addColumn('string', 'Month');
+            temperatureData.addColumn('string', 'Date');
             temperatureData.addColumn('number', 'Temperature');
 
             humidityData = new google.visualization.DataTable();
-            humidityData.addColumn('string', 'Month');
+            humidityData.addColumn('string', 'Date');
             humidityData.addColumn('number', 'Humidity');
 
             pressureData = new google.visualization.DataTable();
-            pressureData.addColumn('string', 'Month');
+            pressureData.addColumn('string', 'Date');
             pressureData.addColumn('number', 'Pressure');
 
             weatherEntries.forEach(function(entry) {
@@ -109,7 +109,9 @@
                         <li><a href="/forecast/washington">Washington</a></li>
                     </ul>
                 </div>
-
+        <div>
+            <p th:text="${chartTitle}">Weather Forecast</p>
+        </div>
         <div>
             <div id="temperature_chart"></div>
             <div id="humidity_chart"></div>

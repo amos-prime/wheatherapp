@@ -4,13 +4,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.io.Serializable;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public class ForecastEntry implements Serializable {
 
-    private Instant timestamp;
+    private String timestamp;
 
     private double temperature;
 
@@ -18,14 +21,16 @@ public class ForecastEntry implements Serializable {
 
     private int humidity;
 
-
-    public Instant getTimestamp() {
+    public String getTimestamp() {
         return this.timestamp;
     }
 
     @JsonSetter("dt")
     public void setTimestamp(long unixTime) {
-        this.timestamp = Instant.ofEpochMilli(unixTime * 1000);
+        Date date = new Date(unixTime * 1000);
+        //TODO take it out to layer responsible for front end model
+        Format format = new SimpleDateFormat("dd MMMM HH:mm:ss");
+        timestamp = format.format(date);
     }
 
     public double getTemperature() {
