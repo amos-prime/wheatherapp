@@ -4,11 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
-import static org.mockito.BDDMockito.given;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnit4.class)
 public class ApiAvailabilityServiceImplTest {
@@ -22,9 +20,8 @@ public class ApiAvailabilityServiceImplTest {
 
     @Test
     public void ApiAvailabilityService_isApiAvailable() {
-        assertTrue(apiAvailabilityService.isApiAvailable());
-
-        for(int i = 0; i < 60; i++) {
+        for(int i = 0; i < ApiAvailabilityServiceImpl.LIMIT_OF_CALLS; i++) {
+            assertTrue(apiAvailabilityService.isApiAvailable());
             apiAvailabilityService.registerApiCall();
         }
 

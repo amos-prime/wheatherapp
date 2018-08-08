@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class ApiAvailabilityServiceImpl implements ApiAvailabilityService {
 
-    private static final int LIMIT_OF_CALLS = 60;
+    public static final int LIMIT_OF_CALLS = 60;
     private List<LocalDateTime> history = new ArrayList<LocalDateTime>(LIMIT_OF_CALLS);
 
     @Override

@@ -51,7 +51,6 @@ public class CityDetailsProviderTest {
 
         assertThat(cityDetailsWashington.getName()).isEqualTo(washington);
         assertThat(cityDetailsWashington.getId()).isEqualTo(washingtonId);
-
     }
 
     @Test(expected = NoSuchCityExcetion.class)
